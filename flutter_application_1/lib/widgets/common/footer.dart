@@ -30,7 +30,7 @@ class Footer extends StatelessWidget {
           _buildTabItem(0, "Icon.png", "Feed"),
           _buildTabItem(1, "Icon.png", "Profile"), // 💡 메인 싱크에 맞게 1번을 Profile로 매칭하거나 순서를 맞추시면 됩니다!
           _buildTabItem(2, "Icon.png", "Messages"),
-          _buildTabItem(3, "Icon.png", "Jobs"),
+          _buildTabItem(3, "Icon.png", "My"),
         ],
       ),
     );

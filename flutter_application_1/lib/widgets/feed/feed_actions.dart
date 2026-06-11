@@ -9,7 +9,6 @@ class FeedActions extends StatefulWidget {
 }
 
 class _FeedActionsState extends State<FeedActions> {
-  final String _tempTime = "2 hours ago";
 
   @override
   Widget build(BuildContext context) {
