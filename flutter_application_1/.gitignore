@@ -1,0 +1,44 @@
+# -------------------------------------------------------------------------
+# 💙 플러터(Flutter) 공식 추천 .gitignore 족보
+# -------------------------------------------------------------------------
+
+# 컴퓨터가 임시로 쓰는 플러터 빌드 파일들 (절대 올리면 안 됨!)
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+
+# 스마트폰 에뮬레이터나 로그 파일들
+⚠️ 아이콘로그.txt
+*.log
+
+# -------------------------------------------------------------------------
+# 🛠️ 개발 툴 (IDE) 관련 파일들
+# -------------------------------------------------------------------------
+# VS Code 관련 설정 (내가 커스텀한 테마나 창 크기 등은 업로드 제외)
+.vscode/
+
+# Android Studio 및 IntelliJ 관련 임시 파일
+.idea/
+*.iml
+*.iws
+.modules.xml
+
+# 맥북(Mac) 쓰신다면 자동으로 생기는 유령 파일
+.DS_Store
+
+# -------------------------------------------------------------------------
+# 🤖 각 운영체제(OS)별 빌드 임시 파일
+# -------------------------------------------------------------------------
+# Android
+android/**/local.properties
+android/flutter_signer.keystore
+android/app/src/main/res/drawable-*/
+
+# iOS
+ios/.xcode_config/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
