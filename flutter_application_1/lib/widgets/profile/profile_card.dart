@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/widgets/profile_buttons.dart';
-import 'package:flutter_application_1/widgets/profile_stats.dart';
-import 'package:flutter_application_1/widgets/profile_tags.dart';
+import 'package:flutter_application_1/widgets/profile/profile_buttons.dart';
+import 'package:flutter_application_1/widgets/profile/profile_stats.dart';
+import 'package:flutter_application_1/widgets/profile/profile_tags.dart';
 import 'profile_header.dart';
 
 class ProfileCard extends StatelessWidget {

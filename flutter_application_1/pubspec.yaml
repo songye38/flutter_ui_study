@@ -34,6 +34,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  flutter_svg: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -87,3 +88,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+# 💡 여기에 assets 항목을 추가해서 폴더 경로를 등록합니다!
+  assets:
+    - assets/icons/  # 이렇게 적으면 이 폴더 안의 모든 파일을 앱이 인식해요.
