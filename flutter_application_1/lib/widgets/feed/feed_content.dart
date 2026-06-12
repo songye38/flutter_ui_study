@@ -1,6 +1,7 @@
 // lib/widgets/custom_footer.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/feed/feed_actions.dart';
+import 'package:go_router/go_router.dart';
 
 // 1. 껍데기 클래스 (StatefulWidget)
 class FeedContent extends StatefulWidget {
@@ -52,10 +53,19 @@ class _FeedContentState extends State<FeedContent> {
           ),
           const SizedBox(height: 12), // 이미지와 텍스트 사이 간격
           FeedActions(),
-          Text(
-            _tempContent,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          GestureDetector(
+            onTap: () {
+              // 💡 클릭 시 123번 피드 상세 페이지로 이동 (context.push 사용)
+              context.push('/detail/123');
+            },
+            child: Text(
+              _tempContent,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
           ),
+
+          const SizedBox(height: 4),
+          // ... 뒤쪽 태그 관련 코드는 그대로 유지
           const SizedBox(height: 4),
           Text(
             _tempTags.map((tag) => '#$tag').join(' '),
