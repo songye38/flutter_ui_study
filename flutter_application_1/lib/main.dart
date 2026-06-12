@@ -7,8 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart'; // 💡 go_router 임포트
 
 import 'package:flutter_application_1/widgets/common/footer.dart';
-import 'package:flutter_application_1/widgets/profile/profile_card.dart';
-import 'package:flutter_application_1/widgets/feed/feed_card.dart';
+import 'package:flutter_application_1/widgets/profile/presentation/profile_card.dart';
+import 'package:flutter_application_1/widgets/feed/presentation/feed_card.dart';
 import 'widgets/common/header.dart';
 import 'package:flutter_application_1/screens/login_screen.dart';
 import 'package:flutter_application_1/screens/detail_screen.dart'; // 상세페이지 임포트
@@ -30,7 +30,7 @@ final GoRouter _router = GoRouter(
         // 💡 state.extra에서 보따리를 꺼냅니다.
         final data = state.extra as Map<String, String>?;
 
-        return DetailScreen(itemId: id, title: data?['title'] ?? '제목 없음');
+        return DetailScreen(itemId: id);
       },
     ),
   ],

@@ -1,7 +1,7 @@
 // lib/widgets/custom_footer.dart
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/widgets/feed/feed_actions.dart';
+import 'package:flutter_application_1/widgets/feed/presentation/feed_actions.dart';
 import 'package:go_router/go_router.dart';
 
 // 1. 껍데기 클래스 (StatefulWidget)
