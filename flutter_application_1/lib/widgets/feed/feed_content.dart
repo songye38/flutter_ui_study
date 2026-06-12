@@ -1,4 +1,5 @@
 // lib/widgets/custom_footer.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/feed/feed_actions.dart';
 import 'package:go_router/go_router.dart';
@@ -21,6 +22,7 @@ class _FeedContentState extends State<FeedContent> {
     'Productivity',
     'MechanicalKeyboard',
   ];
+  final String _tempNum = '3';
 
   // 3. 화면을 그리는 함수 (build)
   @override
@@ -56,7 +58,14 @@ class _FeedContentState extends State<FeedContent> {
           GestureDetector(
             onTap: () {
               // 💡 클릭 시 123번 피드 상세 페이지로 이동 (context.push 사용)
-              context.push('/detail/123');
+              //context.push('/detail/$_tempNum');
+              context.push(
+                '/detail/3',
+                extra: {
+                  'title': 'Mechanical Keyboard Review',
+                  'author': 'Song-i',
+                },
+              );
             },
             child: Text(
               _tempContent,

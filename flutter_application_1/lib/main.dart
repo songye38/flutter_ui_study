@@ -13,10 +13,7 @@ import 'package:flutter_application_1/screens/detail_screen.dart'; // 상세페�
 final GoRouter _router = GoRouter(
   initialLocation: '/login', // 앱이 처음 켜지면 로그인 화면으로!
   routes: [
-    GoRoute(
-      path: '/login',
-      builder: (context, state) => const LoginScreen(),
-    ),
+    GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     GoRoute(
       path: '/main',
       builder: (context, state) => const MyPracticeScreen(),
@@ -25,9 +22,11 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/detail/:id',
       builder: (context, state) {
-        // 주소창이나 push할 때 넘어온 :id 값을 꺼냅니다.
         final id = state.pathParameters['id'] ?? '0';
-        return DetailScreen(itemId: id);
+        // 💡 state.extra에서 보따리를 꺼냅니다.
+        final data = state.extra as Map<String, String>?;
+
+        return DetailScreen(itemId: id, title: data?['title'] ?? '제목 없음');
       },
     ),
   ],
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
     // 💡 [수정] MaterialApp.router를 사용하고 주입합니다.
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      routerConfig: _router, 
+      routerConfig: _router,
     );
   }
 }
@@ -81,7 +80,10 @@ class _MyPracticeScreenState extends State<MyPracticeScreen> {
               _bodyScreens[_currentIndex],
               const SizedBox(height: 40),
               const Center(
-                child: Text('Hello Flutter!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                child: Text(
+                  'Hello Flutter!',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(height: 40),
             ],
