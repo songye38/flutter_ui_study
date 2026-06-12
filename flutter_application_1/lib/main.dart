@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/common/footer.dart';
 import 'package:flutter_application_1/widgets/profile/profile_card.dart';
-import 'package:flutter_application_1/widgets/feed/feed_card.dart'; 
+import 'package:flutter_application_1/widgets/feed/feed_card.dart';
 import 'widgets/common/header.dart';
 
 // 💡 [수정] 1단계: 우리가 만든 로그인 스크린을 임포트합니다.
-import 'package:flutter_application_1/screens/login_screen.dart'; 
+import 'package:flutter_application_1/screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       // 💡 [수정] 2단계: 앱이 켜졌을 때 메인이 아니라 '로그인 페이지'를 대문으로 띄웁니다!
-      home: LoginScreen(), 
+      home: LoginScreen(),
     );
   }
 }
@@ -36,28 +36,39 @@ class MyPracticeScreen extends StatefulWidget {
 class _MyPracticeScreenState extends State<MyPracticeScreen> {
   int _currentIndex = 0;
 
-  final List<Widget> _bodyScreens = [
-    const ProfileCard(), 
-    const FeedCard(),    
-  ];
+  final List<Widget> _bodyScreens = [const ProfileCard(), const FeedCard()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea( 
-        child: SingleChildScrollView( 
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: [
-              const Header(), 
+              const Header(),
+              SearchBar(
+                hintText: '검색어를 입력하세요',
+                leading: const Icon(Icons.search), // 🔎 왼쪽에 붙는 돋보기 아이콘
+                trailing: [
+                  // ⚙️ 오른쪽에 붙는 액션 버튼들 (배열이라 여러 개 넣을 수 있어요!)
+                  IconButton(
+                    icon: const Icon(Icons.tune), // 필터 아이콘
+                    onPressed: () {},
+                  ),
+                ],
+                onChanged: (value) {
+                  print('유저가 입력 중인 텍스트: $value');
+                },
+              ),
               _bodyScreens[_currentIndex],
-              const SizedBox(height: 40), 
+              const SizedBox(height: 40),
               const Center(
                 child: Text(
                   'Hello Flutter!',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
-              const SizedBox(height: 40), 
+              const SizedBox(height: 40),
             ],
           ),
         ),
@@ -66,7 +77,7 @@ class _MyPracticeScreenState extends State<MyPracticeScreen> {
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
-            _currentIndex = index; 
+            _currentIndex = index;
           });
         },
       ),
