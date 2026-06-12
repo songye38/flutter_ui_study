@@ -1,5 +1,9 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/providers/navigation_provider.dart';
+import 'package:flutter_application_1/screens/message_screen.dart';
+import 'package:flutter_application_1/screens/my_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart'; // 💡 go_router 임포트
 
 import 'package:flutter_application_1/widgets/common/footer.dart';
@@ -33,7 +37,8 @@ final GoRouter _router = GoRouter(
 );
 
 void main() {
-  runApp(const MyApp());
+  // 💡 ProviderScope로 앱을 감싸야 Riverpod 전역 상태를 쓸 수 있습니다!
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -49,20 +54,24 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// (MyPracticeScreen 클래스는 기존 코드 그대로 유지됩니다!)
-class MyPracticeScreen extends StatefulWidget {
+// 💡 StatelessWidget 대신 ConsumerWidget을 상속받습니다!
+class MyPracticeScreen extends ConsumerWidget {
   const MyPracticeScreen({super.key});
 
+  // 💡 ConsumerWidget의 build 함수는 'WidgetRef ref'라는 매개변수를 하나 더 받습니다.
+  // 이 'ref'가 전역 저장소에 빨대를 꽂는 도구입니다.
   @override
-  State<MyPracticeScreen> createState() => _MyPracticeScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    // 💡 Zustand의 useSelector처럼 전역 인덱스 상태를 실시간 감시(watch)합니다.
+    final currentIndex = ref.watch(navigationProvider);
 
-class _MyPracticeScreenState extends State<MyPracticeScreen> {
-  int _currentIndex = 0;
-  final List<Widget> _bodyScreens = [const ProfileCard(), const FeedCard()];
+    final List<Widget> _bodyScreens = [
+      const ProfileCard(),
+      const FeedCard(),
+      const MessageScreen(),
+      const MyScreen(),
+    ];
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -77,11 +86,12 @@ class _MyPracticeScreenState extends State<MyPracticeScreen> {
                 ],
                 onChanged: (value) => print(value),
               ),
-              _bodyScreens[_currentIndex],
+              // 💡 전역 상태값인 currentIndex를 사용합니다.
+              _bodyScreens[currentIndex],
               const SizedBox(height: 40),
               const Center(
                 child: Text(
-                  'Hello Flutter!',
+                  'Hello Riverpod!',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -91,11 +101,10 @@ class _MyPracticeScreenState extends State<MyPracticeScreen> {
         ),
       ),
       bottomNavigationBar: Footer(
-        currentIndex: _currentIndex,
+        currentIndex: currentIndex, // 💡 전역 상태 주입
         onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          // 💡 탭을 누르면 ref.read를 통해 스토어의 액션 함수를 실행합니다!
+          ref.read(navigationProvider.notifier).setIndex(index);
         },
       ),
     );
