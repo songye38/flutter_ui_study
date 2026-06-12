@@ -27,10 +27,10 @@ class Footer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           // 💡 내장된 함수에 고유 인덱스(0, 1, 2, 3)를 전달합니다.
-          _buildTabItem(0, "Icon.png", "Feed"),
-          _buildTabItem(1, "Icon.png", "Profile"), // 💡 메인 싱크에 맞게 1번을 Profile로 매칭하거나 순서를 맞추시면 됩니다!
-          _buildTabItem(2, "Icon.png", "Messages"),
-          _buildTabItem(3, "Icon.png", "My"),
+          _buildTabItem(0, "activity.svg", "Feed"),
+          _buildTabItem(1, "activity.svg", "Profile"), // 💡 메인 싱크에 맞게 1번을 Profile로 매칭하거나 순서를 맞추시면 됩니다!
+          _buildTabItem(2, "activity.svg", "Messages"),
+          _buildTabItem(3, "activity.svg", "My"),
         ],
       ),
     );
